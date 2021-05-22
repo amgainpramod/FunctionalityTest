@@ -1,5 +1,6 @@
 package pageclasses;
 
+import basepage.BasePage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,12 +9,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NavigationPage {
+public class NavigationPage extends BasePage {
     public WebDriver driver;
     private JavascriptExecutor JSExecutor;
     private final String Home_URL = "https://courses.letskodeit.com/";
 
     public NavigationPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         this.JSExecutor = (JavascriptExecutor)driver;
         PageFactory.initElements(driver, this);

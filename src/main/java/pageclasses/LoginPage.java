@@ -1,11 +1,12 @@
 package pageclasses;
 
+import basepage.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
     /***
      * Variables
@@ -16,6 +17,7 @@ public class LoginPage {
     public WebDriver driver;
 
     public LoginPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
