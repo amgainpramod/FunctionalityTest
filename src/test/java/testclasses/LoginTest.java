@@ -1,25 +1,16 @@
 package testclasses;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageclasses.LoginPage;
-import pageclasses.NavigationPage;
-import test.utilies.WebDriverUtility;
+import test.baseclass.BaseTest;
 
-public class LoginTest extends WebDriverUtility {
-    String baseURL;
-    LoginPage loginPage;
-    NavigationPage navigationPage;
+public class LoginTest extends BaseTest {
 
     @BeforeClass
     public void setUp(){
-        baseURL = "https://letskodeit.com/";
-        driver.get(baseURL);
-        navigationPage = new NavigationPage(driver);
-        loginPage = navigationPage.login();
+
     }
 
     @Test
@@ -43,11 +34,4 @@ public class LoginTest extends WebDriverUtility {
             navigationPage.redirectToLogin();
         }
     }
-
-    @AfterClass
-    public void tearDown(){
-        //driver.quit();
-    }
-
-
 }
