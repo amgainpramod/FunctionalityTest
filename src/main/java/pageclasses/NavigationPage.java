@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class NavigationPage extends BasePage {
     public WebDriver driver;
-    private JavascriptExecutor JSExecutor;
+    private final JavascriptExecutor JSExecutor;
     private final String Home_URL = "https://courses.letskodeit.com/";
 
     public NavigationPage(WebDriver driver) {
@@ -23,9 +23,6 @@ public class NavigationPage extends BasePage {
 
     @FindBy(xpath = "//a[@href='https://courses.letskodeit.com/login']")
     WebElement LOGIN_LINK;
-
-    @FindBy(xpath = "//a[@href='/login']")
-    WebElement SIGN_IN_LINK;
 
     @FindBy(xpath = "//button[@id='dropdownMenu1']/img")
     WebElement ACCOUNT_IMAGE;
@@ -42,10 +39,6 @@ public class NavigationPage extends BasePage {
     @FindBy(xpath = "//a[@href='/logout']")
     WebElement LOGOUT_LINK;
 
-//    public void goToNavigation(){
-//        driver.navigate().to(Home_URL);
-//    }
-
     public LoginPage login(){
         LOGIN_LINK.click();
         return new LoginPage(driver);
@@ -56,12 +49,12 @@ public class NavigationPage extends BasePage {
         JSExecutor.executeScript("window.scrollBy(0,1000)");
     }
 
-    public void goToAllCourses() throws InterruptedException {
+    public void goToAllCourses() {
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.elementToBeClickable(ALL_COURSES_LINK)).click();
     }
 
-    public void goToMyCourses() throws InterruptedException {
+    public void goToMyCourses() {
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.elementToBeClickable(MY_COURSES_LINK)).click();
     }
@@ -79,20 +72,11 @@ public class NavigationPage extends BasePage {
         ACCOUNT_DROPDOWN.click();
         WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.elementToBeClickable(LOGOUT_LINK)).click();
-
     }
 
-    public LoginPage redirectToLogin(){
-        SIGN_IN_LINK.click();
-        return new LoginPage(driver);
-
+    public void redirectToLogin(){
+        new LoginPage(driver);
     }
-
-
-//    public boolean isOpen(){
-//        return URL.equalsIgnoreCase(driver.getCurrentUrl());
-//    }
-
 }
 
 

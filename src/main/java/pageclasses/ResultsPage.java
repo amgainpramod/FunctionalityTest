@@ -34,22 +34,9 @@ public class ResultsPage extends BasePage {
         return COURSES_LIST.size();
     }
 
-    public boolean verifyInputSearchResult(){
-        boolean result = false;
-        if(countCourses() > 0){
-            result = true;
-        }
+    public boolean verifySearchResult(){
         //result = hasSearchPageURL() && result;
-        return result;
-    }
-
-    public boolean verifyCategorySearchResult(){
-        boolean result = false;
-        if(countCourses() > 0){
-            result = true;
-        }
-        //result = hasCategoryPageURL() && result;
-        return result;
+        return countCourses() > 0;
     }
 
 }

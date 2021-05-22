@@ -20,7 +20,7 @@ public class AllCoursesTest extends BaseTest {
         searchByPage = new SearchByPage(driver);
         resultsPage = searchByPage.searchCourse("rest api");
 
-        boolean searchResult = resultsPage.verifyInputSearchResult();
+        boolean searchResult = resultsPage.verifySearchResult();
         Assert.assertTrue(searchResult);
     }
 
@@ -29,7 +29,7 @@ public class AllCoursesTest extends BaseTest {
         navigationPage.scrollPage();
         categoryFilterPage = new CategoryFilterPage(driver);
         resultsPage = categoryFilterPage.selectCategory("Sofware Testing");
-        boolean categoryResults = resultsPage.verifyCategorySearchResult();
+        boolean categoryResults = resultsPage.verifySearchResult();
         Assert.assertTrue(categoryResults);
 
     }

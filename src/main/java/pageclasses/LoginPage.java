@@ -47,11 +47,6 @@ public class LoginPage extends BasePage {
         PASSWORD_FIELD.sendKeys(password);
         LOGIN_BUTTON.click();
 
-        /***
-         * If a new page is the result of an action (method), then the method should return the Page Object of
-         * the new Page
-         */
-
         return new NavigationPage(driver);
     }
 }
