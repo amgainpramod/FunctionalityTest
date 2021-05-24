@@ -2,10 +2,11 @@ package basepage;
 
 import org.openqa.selenium.WebDriver;
 
-public class BasePage {
+public class BasePage extends CustomDriver{
     WebDriver driver;
 
     public BasePage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

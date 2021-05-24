@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.Util;
 
 public class LoginPage extends BasePage {
 
@@ -22,7 +23,8 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-
+    @FindBy(xpath = "//h4[text()='Login']")
+    WebElement LOGIN_PAGE_HEADER;
 
     @FindBy(id = "email")
     WebElement EMAIL_FIELD;
@@ -33,12 +35,10 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@type='submit']")
     WebElement LOGIN_BUTTON;
 
-
-
-    /***
-     * Methods
-     */
-
+    public boolean verifyPage(){
+        String actualText = LOGIN_PAGE_HEADER.getText();
+        return Util.verifyTextContains(actualText, "Login");
+    }
 
     public NavigationPage signInWith(String email, String password){
         EMAIL_FIELD.clear();

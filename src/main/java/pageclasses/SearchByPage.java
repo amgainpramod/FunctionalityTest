@@ -26,11 +26,15 @@ public class SearchByPage extends BasePage {
     public ResultsPage searchCourse(String courseName) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(SEARCH_COURSE_FIELD));
-        SEARCH_COURSE_FIELD.clear();
-        SEARCH_COURSE_FIELD.sendKeys(courseName);
-        Thread.sleep(3000);
-        SEARCH_COURSE_BUTTON.click();
-        Thread.sleep(3000);
+//        SEARCH_COURSE_FIELD.clear();
+//        SEARCH_COURSE_FIELD.sendKeys(courseName);
+        //Coming from CustomDriver class
+        sendData(SEARCH_COURSE_FIELD, courseName, "Search Course Field");
+//        Thread.sleep(3000);
+//        SEARCH_COURSE_BUTTON.click();
+//        Thread.sleep(3000);
+        //Coming from CustomDriver class
+        elementClick(SEARCH_COURSE_BUTTON, "Search Course Button");
 
         return new ResultsPage(driver);
     }

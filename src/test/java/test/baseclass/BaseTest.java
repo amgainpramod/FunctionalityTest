@@ -1,12 +1,9 @@
 package test.baseclass;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import pageclasses.*;
-
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     public WebDriver driver;
@@ -19,10 +16,8 @@ public class BaseTest {
 
     @BeforeClass
     public void commonSetUp(){
+        driver = WebDriverFactory.getInstance().getDriver("chrome");
         baseURL = "https://letskodeit.com/";
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.get(baseURL);
         navigationPage = new NavigationPage(driver);
         loginPage = navigationPage.login();
@@ -30,6 +25,6 @@ public class BaseTest {
 
     @AfterClass
     public void commonTearDown(){
-        driver.quit();
+        WebDriverFactory.getInstance().quitDriver();
     }
 }
