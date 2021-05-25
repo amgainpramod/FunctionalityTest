@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utilities.Util;
 
 public class NavigationPage extends BasePage {
     public WebDriver driver;
@@ -44,7 +43,6 @@ public class NavigationPage extends BasePage {
     WebElement POP_UP;
 
     public LoginPage login(){
-        Util.sleep(3000, " to be clickable");
         if(POP_UP.isDisplayed()){
             elementClick(POP_UP, "Pop Up", 5000);
         }
