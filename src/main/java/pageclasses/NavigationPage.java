@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.Util;
 
 public class NavigationPage extends BasePage {
     public WebDriver driver;
@@ -39,8 +40,17 @@ public class NavigationPage extends BasePage {
     @FindBy(xpath = "//a[@href='/logout']")
     WebElement LOGOUT_LINK;
 
+    @FindBy(xpath = "//div[@id='cp_close_image-2-2077']/div/div/img")
+    WebElement POP_UP;
+
     public LoginPage login(){
-        LOGIN_LINK.click();
+        Util.sleep(3000, " to be clickable");
+        if(POP_UP.isDisplayed()){
+            elementClick(POP_UP, "Pop Up", 5000);
+        }
+
+        //LOGIN_LINK.click();
+        elementClick(LOGIN_LINK, "Login Link");
         return new LoginPage(driver);
 
     }
@@ -63,7 +73,7 @@ public class NavigationPage extends BasePage {
         try {
             return ACCOUNT_IMAGE.isDisplayed();
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
     }

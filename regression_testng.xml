@@ -1,9 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression Test Suite">
-    <test name="Application Test" preserve-order="true">
-        <classes>
-            <class name="testclasses.LoginTest"></class>
-            <class name="testclasses.AllCoursesTest"></class>
-        </classes>
-    </test>
-</suite>

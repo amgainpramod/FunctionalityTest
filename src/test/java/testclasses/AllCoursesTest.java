@@ -14,7 +14,7 @@ public class AllCoursesTest extends BaseTest {
         navigationPage = loginPage.signInWith("test@email.com", "abcabc");
     }
 
-    @Test
+    @Test(enabled = false)
     public void searchByInput() throws InterruptedException {
         navigationPage.scrollPage();
         searchByPage = new SearchByPage(driver);
@@ -24,7 +24,7 @@ public class AllCoursesTest extends BaseTest {
         Assert.assertTrue(searchResult);
     }
 
-    @Test()
+    @Test(enabled = false)
     public void searchByCategory(){
         navigationPage.scrollPage();
         categoryFilterPage = new CategoryFilterPage(driver);

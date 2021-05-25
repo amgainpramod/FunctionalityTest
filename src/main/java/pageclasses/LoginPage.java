@@ -41,11 +41,15 @@ public class LoginPage extends BasePage {
     }
 
     public NavigationPage signInWith(String email, String password){
-        EMAIL_FIELD.clear();
-        EMAIL_FIELD.sendKeys(email);
-        PASSWORD_FIELD.clear();
-        PASSWORD_FIELD.sendKeys(password);
-        LOGIN_BUTTON.click();
+//        EMAIL_FIELD.clear();
+//        EMAIL_FIELD.sendKeys(email);
+//        PASSWORD_FIELD.clear();
+//        PASSWORD_FIELD.sendKeys(password);
+//        LOGIN_BUTTON.click();
+
+        sendData(EMAIL_FIELD, email, "Email Field");
+        sendData(PASSWORD_FIELD, password, "Password Field");
+        elementClick(LOGIN_BUTTON, "Login Button");
 
         return new NavigationPage(driver);
     }

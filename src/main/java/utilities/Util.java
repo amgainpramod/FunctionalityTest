@@ -16,7 +16,7 @@ public class Util {
      */
     public static void sleep(long mSec, String info) {
         if (info != null) {
-            System.out.println("Wait " + mSec + "for " + info);
+            System.out.println("Waiting for max :: " + mSec/1000 + " seconds " + info);
         }
         try {
             Thread.sleep(mSec);

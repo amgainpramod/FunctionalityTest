@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 public class CategoryFilterPage extends BasePage {
     WebDriver driver;
@@ -21,8 +20,9 @@ public class CategoryFilterPage extends BasePage {
 
     public ResultsPage selectCategory(String categoryName){
 
-        Select select = new Select(dropDownElement);
-        select.selectByVisibleText(categoryName);
+//        Select select = new Select(dropDownElement);
+//        select.selectByVisibleText(categoryName);
+        elementSelect(dropDownElement, "Select By Visible Text", categoryName);
 
         return new ResultsPage(driver);
     }

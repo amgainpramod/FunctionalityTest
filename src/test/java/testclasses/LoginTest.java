@@ -13,14 +13,14 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @Test
+    @Test()
     public void testLogin() {
         navigationPage = loginPage.signInWith("test@email.com", "abcabc");
         boolean result = navigationPage.isUserLoggedIn();
         Assert.assertTrue(result);
     }
 
-    @Test
+    @Test()
     public void testInvalidLogin() {
         navigationPage = loginPage.signInWith("test@email", "abcabc");
         boolean result = navigationPage.isUserLoggedIn();

@@ -3,6 +3,7 @@ package test.baseclass;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import pageclasses.*;
 
 public class BaseTest {
@@ -15,8 +16,9 @@ public class BaseTest {
     protected ResultsPage resultsPage;
 
     @BeforeClass
-    public void commonSetUp(){
-        driver = WebDriverFactory.getInstance().getDriver("chrome");
+    @Parameters({"browser"})
+    public void commonSetUp(String browser){
+        driver = WebDriverFactory.getInstance().getDriver(browser);
         baseURL = "https://letskodeit.com/";
         driver.get(baseURL);
         navigationPage = new NavigationPage(driver);

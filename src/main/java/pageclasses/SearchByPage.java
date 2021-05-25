@@ -34,7 +34,7 @@ public class SearchByPage extends BasePage {
 //        SEARCH_COURSE_BUTTON.click();
 //        Thread.sleep(3000);
         //Coming from CustomDriver class
-        elementClick(SEARCH_COURSE_BUTTON, "Search Course Button");
+        elementClick(SEARCH_COURSE_BUTTON, "Search Course Button", 3000);
 
         return new ResultsPage(driver);
     }

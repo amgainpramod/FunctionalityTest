@@ -171,17 +171,17 @@ public class CustomDriver {
      */
     public void elementClick(WebElement element, String info, long timeToWait) {
         try {
-            element.click();
-            if (timeToWait == 0) {
-                System.out.println("Clicked On :: " + info);
-            } else {
-                Util.sleep(timeToWait, "Clicked on :: " + info);
+            if(timeToWait > 0){
+                Util.sleep(timeToWait, "for " + info + " to be clickable");
             }
+            element.click();
+            System.out.println("Clicked On :: " + info);
         } catch (Exception e) {
             System.out.println("Cannot click on :: " + info);
             takeScreenshot("Click ERROR", "");
         }
     }
+
 
     /**
      * Click element with no time to wait after click
@@ -218,6 +218,34 @@ public class CustomDriver {
         elementClick(element, info, 0);
     }
 
+    public void elementSelect(WebElement element, String info, String optionToSelect, long timeToWait){
+        try{
+            if(timeToWait > 0){
+                Util.sleep(timeToWait, " to select " + info);
+            }
+            Select select = new Select(element);
+            select.selectByVisibleText(optionToSelect);
+            System.out.println("Selected :: " + optionToSelect);
+        } catch (Exception e){
+            System.out.println("Cannot select :: " + optionToSelect);
+            takeScreenshot("Select ERROR", "");
+        }
+    }
+
+    public void elementSelect(String locator, String info, String optionToSelect, long timeToWait){
+        WebElement element = getElement(locator, info);
+        elementSelect(element, info, optionToSelect, timeToWait);
+    }
+
+    public void elementSelect(String locator, String info, String optionToSelect){
+        WebElement element = this.getElement(locator, info);
+        elementSelect(element, info, optionToSelect, 0);
+    }
+
+    public void elementSelect(WebElement element, String info, String optionToSelect){
+        elementSelect(element, info, optionToSelect, 0);
+    }
+
     /***
      * Click element using JavaScript
      * @param locator - locator strategy, id=>example, name=>example, css=>#example,
@@ -233,6 +261,7 @@ public class CustomDriver {
             System.out.println("Cannot click on :: " + info);
         }
     }
+
 
     /***
      * Click element when element is clickable
