@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.Util;
 
 public class NavigationPage extends BasePage {
     public WebDriver driver;
@@ -48,7 +49,14 @@ public class NavigationPage extends BasePage {
         }
 
         //LOGIN_LINK.click();
-        elementClick(LOGIN_LINK, "Login Link");
+        boolean isDisplayed = LOGIN_LINK.isDisplayed();
+        System.out.println("Login Link is displayed: " + isDisplayed);
+        try{
+            elementClick(LOGIN_LINK, "Login Link", 15000);
+        } catch (Exception e){
+            System.out.println("Unable to click login link");
+            e.printStackTrace();
+        }
         return new LoginPage(driver);
 
     }
@@ -74,6 +82,10 @@ public class NavigationPage extends BasePage {
             //e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean verifyHeader(){
+        return Util.verifyTextContains(ALL_COURSES_LINK.getText(), "All Coursesess");
     }
 
     public void logOut(){

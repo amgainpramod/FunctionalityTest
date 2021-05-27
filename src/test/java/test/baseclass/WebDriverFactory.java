@@ -1,5 +1,7 @@
 package test.baseclass;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,11 +10,13 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
+import utilities.Constants;
 
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverFactory {
+
+    private static final Logger log = LogManager.getLogger(WebDriverFactory.class.getName());
     //Singleton
     //Only one instance of the class can exist at a time
     private static final WebDriverFactory instance = new WebDriverFactory();
@@ -32,17 +36,17 @@ public class WebDriverFactory {
         setDriver(browser);
         if (threadedDriver.get() == null) {
             try {
-                if (browser.equalsIgnoreCase("firefox")) {
+                if (browser.equalsIgnoreCase(Constants.FIREFOX)) {
                     FirefoxOptions options = setFirefoxOptions();
                     driver = new FirefoxDriver(options);
                     threadedDriver.set(driver);
                 }
-                if (browser.equalsIgnoreCase("chrome")) {
+                if (browser.equalsIgnoreCase(Constants.CHROME)) {
                     ChromeOptions options = setChromeOptions();
                     driver = new ChromeDriver(options);
                     threadedDriver.set(driver);
                 }
-                if (browser.equalsIgnoreCase("iexplorer")) {
+                if (browser.equalsIgnoreCase(Constants.IExplorer)) {
                     InternetExplorerOptions options = setInternetExplorerOptions();
                     driver = new InternetExplorerDriver(options);
                     threadedDriver.set(driver);
@@ -63,29 +67,29 @@ public class WebDriverFactory {
 
     private void setDriver(String browser) {
         String driverPath = "";
-        String os = System.getProperty("os.name").toLowerCase().substring(0, 3);
-        System.out.println("OS name from system property :: " + os);
-        String directory = System.getProperty("user.dir") + "//drivers//";
+        String os = Constants.OS_NAME.toLowerCase().substring(0, 3);
+        log.info("OS name from system property :: " + os);
+        String directory = Constants.USER_DIRECTORY + Constants.DRIVERS_DIRECTORY;
         String driverKey = "";
         String driverValue = "";
 
-        if (browser.equalsIgnoreCase("firefox")) {
-            driverKey = "webdriver.gecko.driver";
-            driverValue = "geckodriver";
+        if (browser.equalsIgnoreCase(Constants.FIREFOX)) {
+            driverKey = Constants.GECKO_DRIVER_KEY;
+            driverValue = Constants.GECKO_DRIVER_VALUE;
         }
-        else if (browser.equalsIgnoreCase("chrome")) {
-            driverKey = "webdriver.chrome.driver";
-            driverValue = "chromedriver";
+        else if (browser.equalsIgnoreCase(Constants.CHROME)) {
+            driverKey = Constants.CHROME_DRIVER_KEY;
+            driverValue = Constants.CHROME_DRIVER_VALUE;
         }
-        else if(browser.equalsIgnoreCase("ie")){
-            driverKey = "webdriver.ie.driver";
-            driverValue = "IEDriverServer";
+        else if(browser.equalsIgnoreCase(Constants.IExplorer)){
+            driverKey = Constants.IE_DRIVER_KEY;
+            driverValue = Constants.IE_DRIVER_VALUE;
         } else {
-            System.out.println("Browser type not supported");
+            log.info("Browser type not supported");
         }
 
         driverPath = directory + driverValue + (os.equals("win") ? ".exe" : "");
-        System.out.println("Driver Binary :: " + driverPath);
+        log.info("Driver Binary :: " + driverPath);
         System.setProperty(driverKey, driverPath);
     }
 
@@ -93,8 +97,8 @@ public class WebDriverFactory {
         ChromeOptions options = new ChromeOptions();
 
         //This is to disable info-bar at the start of every test
-        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-        options.setExperimentalOption("useAutomationExtension", false);
+//        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+//        options.setExperimentalOption("useAutomationExtension", false);
         return options;
     }
 
