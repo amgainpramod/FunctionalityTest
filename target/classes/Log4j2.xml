@@ -19,7 +19,7 @@
         <Logger name="org.apache.xmlbeans.impl.common.XBeanDebug" level="OFF"/>
         <Root level="trace">
             <AppenderRef ref="File"/>
-            <AppenderRef ref="Console"/>
+            <!--<AppenderRef ref="Console"/> -->
         </Root>
         <!--<Logger name="com.letskodeit.overview" level="info" additivity="false">
             <AppenderRef ref="File"/>
