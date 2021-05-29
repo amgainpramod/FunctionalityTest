@@ -30,10 +30,12 @@ public class WebDriverFactory {
     }
 
     private static ThreadLocal<WebDriver> threadedDriver = new ThreadLocal<>();
+    private static ThreadLocal<String> threadedBrowser = new ThreadLocal<>();
 
     public WebDriver getDriver(String browser) {
         WebDriver driver = null;
         setDriver(browser);
+        threadedBrowser.set(browser);
         if (threadedDriver.get() == null) {
             try {
                 if (browser.equalsIgnoreCase(Constants.FIREFOX)) {
@@ -58,6 +60,10 @@ public class WebDriverFactory {
             threadedDriver.get().manage().window().maximize();
         }
         return threadedDriver.get();
+    }
+
+    public String getBrowser(){
+        return threadedBrowser.get();
     }
 
     public void quitDriver() {

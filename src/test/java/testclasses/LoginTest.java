@@ -15,7 +15,7 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @Test(enabled = false)
+    @Test
     public void testLogin() {
         navigationPage = loginPage.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD);
         boolean headerResult = navigationPage.verifyHeader();

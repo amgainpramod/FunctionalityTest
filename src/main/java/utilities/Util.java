@@ -55,6 +55,19 @@ public class Util {
     }
 
     /***
+     * Get a unique report name
+     * @return
+     */
+    public static String getReportName(){
+        String localDateTime = getCurrentDateTime();
+        StringBuilder name = new StringBuilder()
+                .append("AutomationReport_")
+                .append(localDateTime)
+                .append(".html");
+        return name.toString();
+    }
+
+    /***
      * Get Random number within specified range
      * @param min
      * @param max

@@ -1,6 +1,5 @@
 package testclasses;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -42,7 +41,8 @@ public class AllCoursesTest extends BaseTest {
         categoryFilterPage = new CategoryFilterPage(driver);
         resultsPage = categoryFilterPage.selectCategory("Sofware Testing");
         boolean categoryResults = resultsPage.verifySearchResult();
-        Assert.assertTrue(categoryResults);
+        //Assert.assertTrue(categoryResults);
+        CheckPoint.markFinal("searchByCategory", categoryResults, "Filter Search Verification");
 
     }
 }

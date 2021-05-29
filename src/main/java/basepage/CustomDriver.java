@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.Constants;
 import utilities.Util;
 
 import java.io.File;
@@ -699,9 +700,10 @@ public class CustomDriver {
      */
     public String takeScreenshot(String methodName, String browserName) {
         String fileName = Util.getScreenshotName(methodName, browserName);
-        String screenshotDir = System.getProperty("user.dir") + "//" + "test-output/screenshots";
+        String screenshotDir = Constants.REPORTS_DIRECTORY +  "//screenshots";
         new File(screenshotDir).mkdirs();
-        String path = screenshotDir + "//" + fileName;
+        String path =  screenshotDir + "//" + fileName;
+
 
         try {
             File screenshot = ((TakesScreenshot) driver).
@@ -711,6 +713,7 @@ public class CustomDriver {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        path = "screenshots//" + fileName;
         return path;
     }
 

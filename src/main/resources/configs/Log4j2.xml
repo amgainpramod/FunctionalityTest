@@ -5,7 +5,7 @@
     </Properties>
     <Appenders>
         <RollingFile name="File" fileName="${basePath}/app.log" filePattern="${basePath}/app-%d{yyyy-MM-dd}.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} -%msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} -%msg%n -%User1"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="100 KB"/>
@@ -16,9 +16,10 @@
         </Console>
     </Appenders>
     <Loggers>
+        <Logger name="org.apache.xmlbeans.impl.common.XBeanDebug" level="OFF"/>
         <Root level="trace">
             <AppenderRef ref="File"/>
-            <AppenderRef ref="Console"/>
+            <!--<AppenderRef ref="Console"/> -->
         </Root>
         <!--<Logger name="com.letskodeit.overview" level="info" additivity="false">
             <AppenderRef ref="File"/>

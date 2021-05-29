@@ -18,11 +18,14 @@ public class NavigationPage extends BasePage {
     public NavigationPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        this.JSExecutor = (JavascriptExecutor)driver;
+        this.JSExecutor = (JavascriptExecutor) driver;
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//a[@href='https://courses.letskodeit.com/login']")
+//    @FindBy(xpath = "//a[@href='https://courses.letskodeit.com/login']")
+//    WebElement LOGIN_LINK;
+
+    @FindBy(xpath = "//a[@href='/login']")
     WebElement LOGIN_LINK;
 
     @FindBy(xpath = "//button[@id='dropdownMenu1']/img")
@@ -43,20 +46,15 @@ public class NavigationPage extends BasePage {
     @FindBy(xpath = "//div[@id='cp_close_image-2-2077']/div/div/img")
     WebElement POP_UP;
 
-    public LoginPage login(){
-        if(POP_UP.isDisplayed()){
-            elementClick(POP_UP, "Pop Up", 5000);
-        }
+    public LoginPage login() {
+//        if(POP_UP.isDisplayed()){
+//            elementClick(POP_UP, "Pop Up", 5000);
+//        }
 
         //LOGIN_LINK.click();
         boolean isDisplayed = LOGIN_LINK.isDisplayed();
-        System.out.println("Login Link is displayed: " + isDisplayed);
-        try{
-            elementClick(LOGIN_LINK, "Login Link", 15000);
-        } catch (Exception e){
-            System.out.println("Unable to click login link");
-            e.printStackTrace();
-        }
+        //System.out.println("Login Link is displayed: " + isDisplayed);
+        elementClick(LOGIN_LINK, "Login Link");
         return new LoginPage(driver);
 
     }
@@ -84,17 +82,17 @@ public class NavigationPage extends BasePage {
         }
     }
 
-    public boolean verifyHeader(){
+    public boolean verifyHeader() {
         return Util.verifyTextContains(ALL_COURSES_LINK.getText(), "All Coursesess");
     }
 
-    public void logOut(){
+    public void logOut() {
         ACCOUNT_DROPDOWN.click();
         WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.elementToBeClickable(LOGOUT_LINK)).click();
     }
 
-    public void redirectToLogin(){
+    public void redirectToLogin() {
         new LoginPage(driver);
     }
 }
